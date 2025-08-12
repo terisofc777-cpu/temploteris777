@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Sistema Teris - Portal Místico</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d1b2a 15%, #1b263b 35%, #2c3e50 55%, #1e3a8a 75%, #0a0a0a 100%);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Partículas de fundo melhoradas */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #10b981);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        /* Container principal */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Logo do templo melhorado */
+        .temple-logo {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .temple-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 20px;
+            animation: scan 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes scan {
+            0%, 100% { opacity: 0; transform: translateX(-100%); }
+            50% { opacity: 1; transform: translateX(100%); }
+        }
+
+        .temple-logo h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 4.5em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #10b981, #3b82f6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            animation: glow 3s ease-in-out infinite alternate, typeWriter 3s steps(20) 1s both;
+            letter-spacing: 3px;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+            to { text-shadow: 0 0 50px rgba(59, 130, 246, 0.8), 0 0 70px rgba(96, 165, 250, 0.6); }
+        }
+
+        @keyframes typeWriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .description {
+            font-size: 1.2em;
+            color: #cbd5e1;
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botão principal melhorado */
+        .enter-temple-btn {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6, #10b981);
+            color: #ffffff;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.4);
+            margin-bottom: 60px;
+        }
+
+        .enter-temple-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .enter-temple-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .enter-temple-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.6);
+        }
+
+        .enter-temple-btn:hover::before {
+            left: 100%;
+        }
+
+        .enter-temple-btn:hover::after {
+            opacity: 1;
+        }
+
+        /* Status do sistema */
+        .system-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #10b981;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            font-weight: 600;
+            border: 1px solid #10b981;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+        }
+
+        /* Barra de carregamento */
+        .loading-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #10b981);
+            width: 0%;
+            animation: loading 3s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Seções de features melhoradas */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #10b981);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-card p {
+            font-size: 1.1em;
+            color: #cbd5e1;
+            line-height: 1.6;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsividade melhorada */
+        @media (max-width: 768px) {
+            .temple-logo h1 {
+                font-size: 3em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .description {
+                font-size: 1em;
+                padding: 0 20px;
+            }
+            
+            .enter-temple-btn {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+            
+            .feature-card {
+                padding: 25px;
+            }
+            
+            .system-status {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8em;
+                padding: 8px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .temple-logo h1 {
+                font-size: 2.5em;
+            }
+            
+            .temple-logo {
+                padding: 30px 20px;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fundo -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Status do sistema -->
+    <div class="system-status">🟢 SISTEMA ONLINE</div>
+
+    <!-- Barra de carregamento -->
+    <div class="loading-bar">
+        <div class="loading-progress"></div>
+    </div>
+
+    <!-- Container principal -->
+    <div class="main-container">
+        <!-- Logo do templo -->
+        <div class="temple-logo">
+            <h1>TEMPLO TERIS</h1>
+            <div class="subtitle">Sistema de Acesso Místico</div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="description">
+            Explore os mistérios do templo e descubra os segredos dos subliminares sagrados. 
+            Aqui você encontrará manuais ancestrais, informações sobre encomendas personalizadas 
+            e canais de comunicação direta. Para pedidos gratuitos, faça em um post que tem no canal. 
+            Às vezes podem estar fechados ou abertos e posso demorar a publicar. Lembrete: eles podem 
+            ser postados em modo não listado ou públicos.
+        </div>
+
+        <!-- Botão principal -->
+        <button class="enter-temple-btn" onclick="entrarNoTemplo()">
+            ACESSAR SISTEMA
+        </button>
+
+        <!-- Seções de features -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Manuais Disponíveis</h3>
+                <p>Acesso aos grimórios sagrados com técnicas avançadas de subliminares e afirmações poderosas. Considere-se o último ato e PDF do canal Teris.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Informações de Encomendas</h3>
+                <p>Subliminares personalizados com boosters energéticos, proteção e magia embutida. Pacotes Básico, Intermediário e Mágico disponíveis.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📞</div>
+                <h3>Meus Contatos</h3>
+                <p>Entre em contato através do email, Amino ou YouTube. Estou sempre disponível para ajudar com seus pedidos e esclarecer dúvidas.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Criar partículas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posição aleatória
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Tamanho aleatório
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Delay de animação aleatório
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Função para entrar no templo
+        function entrarNoTemplo() {
+            const btn = document.querySelector('.enter-temple-btn');
+            
+            // Efeito de clique
+            btn.style.transform = 'scale(0.95)';
+            btn.style.boxShadow = '0 0 40px rgba(59, 130, 246, 0.8)';
+            
+            // Efeito de transição na página
+            document.body.style.transition = 'all 0.8s ease';
+            document.body.style.filter = 'blur(15px) brightness(1.5)';
+            document.body.style.opacity = '0';
+            
+            setTimeout(() => {
+                window.location.href = 'templo-interno.html';
+            }, 800);
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Efeito de digitação no título
+            const title = document.querySelector('.temple-logo h1');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                title.textContent += text[i];
+                i++;
+                if (i >= text.length) {
+                    clearInterval(typeInterval);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
