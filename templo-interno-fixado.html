@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Templo Teris - Interior Sagrado</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0d1b2a 15%, #1b263b 35%, #2c3e50 55%, #1e3a8a 75%, #0a0a0a 100%);
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Removido overflow-y: auto para evitar scroll automático */
+        }
+
+        .temple-header {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6, #10b981);
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(30, 58, 138, 0.5);
+            position: relative;
+            border-bottom: 3px solid #60a5fa;
+            /* Removida animação contínua que pode causar reflow */
+        }
+
+        .temple-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.2em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #ffffff, #60a5fa, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Removida animação glitch que pode causar problemas */
+        }
+
+        .temple-header p {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #cbd5e1;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+            border: 2px solid #60a5fa;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            box-shadow: 0 5px 20px rgba(96, 165, 250, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateX(-8px);
+            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.5);
+            border-color: #3b82f6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            /* Removida animação fadeInUp que pode causar scroll */
+        }
+
+        .welcome-section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            letter-spacing: 2px;
+            /* Removida animação glow contínua */
+        }
+
+        .welcome-section p {
+            font-size: 1.3em;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .section-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #10b981);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .section-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .section-card h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-card h3::before {
+            font-size: 1.2em;
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+        }
+
+        /* Estilos específicos para cada seção */
+        .pdf-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pdf-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .pdf-item .pdf-icon {
+            font-size: 2em;
+            color: #ef4444;
+            filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));
+        }
+
+        .pdf-item .download-btn {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6, #10b981);
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+        }
+
+        .pdf-item .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .feedback-info {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .feedback-info h4 {
+            color: #10b981;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feedback-info p {
+            color: #cbd5e1;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .order-info {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .order-info h4 {
+            color: #60a5fa;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .order-info p {
+            color: #cbd5e1;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+
+        .contact-info h4 {
+            color: #60a5fa;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-detail .icon {
+            font-size: 1.5em;
+            color: #60a5fa;
+        }
+
+        .contact-detail .info {
+            flex: 1;
+        }
+
+        .contact-detail .label {
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-detail .value {
+            color: #cbd5e1;
+            font-size: 1.1em;
+        }
+
+        .contact-btn {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6, #10b981);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .contact-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-message p {
+            color: #cbd5e1;
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Status do sistema - removido position: fixed para evitar problemas */
+        .system-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #10b981;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            font-weight: 600;
+            border: 1px solid #10b981;
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+        }
+
+        /* Barra de carregamento - removida para evitar problemas de layout */
+        .loading-bar {
+            display: none;
+        }
+
+        /* Responsividade melhorada */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                position: relative;
+            }
+            
+            .temple-header {
+                padding: 20px 15px;
+                position: relative;
+                z-index: 100;
+            }
+            
+            .temple-header h1 {
+                font-size: 2.2em;
+                margin-bottom: 10px;
+            }
+            
+            .temple-header p {
+                font-size: 1.1em;
+            }
+            
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                padding: 10px 20px;
+                font-size: 0.8em;
+                position: absolute;
+                z-index: 101;
+            }
+            
+            .container {
+                padding: 20px 10px;
+                margin-top: 0;
+            }
+            
+            .welcome-section {
+                padding: 25px 15px;
+                margin-bottom: 30px;
+                border-radius: 15px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            
+            .welcome-section p {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+            
+            .sections-grid {
+                gap: 25px;
+            }
+            
+            .section-card {
+                padding: 25px 15px;
+                margin-bottom: 0;
+                border-radius: 15px;
+            }
+            
+            .section-card h3 {
+                font-size: 1.4em;
+                margin-bottom: 20px;
+            }
+            
+            .pdf-item {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+            
+            .contact-detail {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .order-info, .contact-info {
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+            
+            .system-status {
+                top: 5px;
+                right: 5px;
+                font-size: 0.7em;
+                padding: 8px 15px;
+                border-radius: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .temple-header {
+                padding: 20px 10px;
+            }
+            
+            .temple-header h1 {
+                font-size: 1.8em;
+            }
+            
+            .temple-header p {
+                font-size: 1em;
+            }
+            
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.7em;
+            }
+            
+            .container {
+                padding: 15px 8px;
+            }
+            
+            .welcome-section {
+                padding: 20px 12px;
+                margin-bottom: 25px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.6em;
+            }
+            
+            .welcome-section p {
+                font-size: 0.95em;
+            }
+            
+            .section-card {
+                padding: 20px 12px;
+            }
+            
+            .section-card h3 {
+                font-size: 1.3em;
+            }
+            
+            .pdf-item {
+                padding: 15px 12px;
+            }
+            
+            .order-info, .contact-info {
+                padding: 15px 12px;
+            }
+            
+            .contact-detail {
+                padding: 12px;
+            }
+            
+            .system-status {
+                font-size: 0.6em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Status do sistema -->
+    <div class="system-status">🟢 SISTEMA ONLINE</div>
+
+    <!-- Header do templo -->
+    <header class="temple-header">
+        <button class="back-btn" onclick="voltarAoInicio()">← VOLTAR</button>
+        <h1>BEM-VINDO AO TEMPLO TERIS</h1>
+        <p>Sistema de Recursos Sagrados</p>
+    </header>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Seção de boas-vindas -->
+        <div class="welcome-section">
+            <h2>🏛️ Interior Sagrado</h2>
+            <p>Explore os mistérios do templo e descubra os segredos dos subliminares sagrados. Aqui você encontrará manuais ancestrais, informações sobre encomendas personalizadas e canais de comunicação direta. Para pedidos gratuitos, faça em um post que tem no canal. Às vezes podem estar fechados ou abertos e posso demorar a publicar. Lembrete: eles podem ser postados em modo não listado ou públicos.</p>
+            
+            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.1)); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 20px; padding: 25px; margin-top: 30px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);">
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #f87171, #ef4444);"></div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="font-size: 1.5em; color: #ef4444; filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));">⚠️</div>
+                    <h4 style="color: #ef4444; font-family: 'Orbitron', monospace; font-size: 1.2em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0; text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);">Aviso de Segurança</h4>
+                </div>
+                <p style="color: #cbd5e1; font-size: 1.1em; line-height: 1.7; margin: 0; font-weight: 500; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Estou adicionando cada subliminal caso o YouTube seja banido novamente. Esta medida é pela <strong>segurança de todos</strong> e dos subliminares.</p>
+            </div>
+        </div>
+
+        <!-- Grid de seções -->
+        <div class="sections-grid">
+            <!-- Seção de Manuais -->
+            <div class="section-card">
+                <h3>📚 Manuais Disponíveis</h3>
+                <p>Acesso exclusivo aos grimórios sagrados contendo técnicas avançadas de subliminares e afirmações poderosas. <strong>Esta é a versão definitiva e completa do canal Teris</strong>, incluindo metodologias sobre sincronização temporal, subliminares avançados, técnicas especializadas e muito mais. Como esta é a versão final que não será mais atualizada, recomendamos aproveitar ao máximo este conteúdo único. <strong>Lembre-se: a evolução é contínua e existem diversas outras metodologias disponíveis para complementar seu desenvolvimento pessoal.</strong></p>
+                
+                <div class="pdf-item" onclick="downloadPDF('portugues')">
+                    <div class="pdf-icon">📄</div>
+                    <span>Manual em Português</span>
+                    <button class="download-btn">BAIXAR</button>
+                </div>
+                
+                <div class="pdf-item" onclick="downloadPDF('ingles')">
+                    <div class="pdf-icon">📄</div>
+                    <span>Manual em Inglês</span>
+                    <button class="download-btn">BAIXAR</button>
+                </div>
+                
+                <div class="feedback-info">
+                    <h4>💬 Feedback</h4>
+                    <p>Para feedback, utilize o YouTube ou diretamente meu email. Sua opinião é muito importante para a evolução do sistema!</p>
+                </div>
+            </div>
+
+            <!-- Seção de Encomendas -->
+            <div class="section-card">
+                <h3>📦 Informações de Encomendas</h3>
+                <p><strong>Subliminares Teris</strong> - Você pode solicitar um subliminar personalizado com boosters energéticos, proteção e, se desejar, magia embutida.</p>
+                
+                <div class="order-info">
+                    <h4>🔹 Pacote Básico – R$20</h4>
+                    <p>Até 100 afirmações<br>
+                    Booster energético forte (com ou sem magia, você decide)<br>
+                    Proteção vibracional forte<br>
+                    Edição básica<br>
+                    Música à sua escolha ou deixe comigo</p>
+                </div>
+                
+                <div class="order-info">
+                    <h4>🔸 Pacote Intermediário – R$30</h4>
+                    <p>Até 200 afirmações<br>
+                    Booster energético forte (com ou sem magia, você decide)<br>
+                    Proteção energética forte<br>
+                    Frequência vibracional opcional (ex: 432Hz, 528Hz)<br>
+                    Edição mais equilibrada<br>
+                    Música personalizada conforme o tema</p>
+                </div>
+                
+                <div class="order-info">
+                    <h4>🔮 Pacote Mágico – R$77</h4>
+                    <p>Até 300 afirmações<br>
+                    Booster mágico com magia<br>
+                    Proteção com selamento mágico<br>
+                    Frequência oculta espiritual<br>
+                    Criado em estado de transe<br>
+                    Edição completa com camadas mágicas<br>
+                    Música à sua escolha ou canalizada</p>
+                </div>
+                
+                <div class="order-info">
+                    <h4>📤 Processo de Pedido:</h4>
+                    <p>Após selecionar o pacote desejado, acesse a seção <strong>"Meus Contatos"</strong> e entre em contato através do email. Inclua as seguintes informações em sua mensagem:</p>
+                    <ul style="margin: 15px 0; padding-left: 20px; color: #cbd5e1;">
+                        <li style="margin-bottom: 8px;">Objetivo principal que deseja manifestar ou transformar</li>
+                        <li style="margin-bottom: 8px;">Preferência musical (ou autorização para seleção personalizada)</li>
+                        <li style="margin-bottom: 8px;">Nome desejado para o título do arquivo (opcional)</li>
+                    </ul>
+                    <p style="margin-top: 15px;">O pagamento pode ser realizado antes ou após a entrega, conforme sua preferência. Após a finalização, você receberá acesso completo ao áudio e às afirmações personalizadas.</p>
+                    <p style="margin-top: 15px; color: #60a5fa; font-weight: 600; font-style: italic;">Mais informações serão enviadas automaticamente pelo meu email assim que você responder as perguntas necessárias. Gratidão!</p>
+                </div>
+                
+                <div class="order-info">
+                    <h4>⏱ Prazo de entrega:</h4>
+                    <p>Até 2 a 4 dias úteis (em caso de muitos pedidos) após o pagamento. Se já estiver pronto, envio no mesmo dia.</p>
+                </div>
+            </div>
+
+            <!-- Seção de Contatos -->
+            <div class="section-card">
+                <h3>📞 Meus Contatos</h3>
+                <p>Entre em contato comigo através dos canais abaixo:</p>
+                
+                <div class="contact-info">
+                    <div class="contact-detail">
+                        <div class="icon">📧</div>
+                        <div class="info">
+                            <div class="label">Email</div>
+                            <div class="value">teris.ofc777@gmail.com</div>
+                        </div>
+                        <button class="contact-btn" onclick="enviarEmail()">ENVIAR EMAIL</button>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="icon">💬</div>
+                        <div class="info">
+                            <div class="label">Amino</div>
+                            <div class="value">Teris_777</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="icon">🎬</div>
+                        <div class="info">
+                            <div class="label">YouTube</div>
+                            <div class="value">Teris_ofc_777</div>
+                        </div>
+                        <button class="contact-btn" onclick="visitarYouTube()">VISITAR CANAL</button>
+                    </div>
+                </div>
+                
+                <div class="contact-message">
+                    <p>Me contate a qualquer momento através dos contatos disponíveis. Responderei o mais breve possível para auxiliar com seus pedidos e esclarecer dúvidas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função simplificada para voltar ao início
+        function voltarAoInicio() {
+            console.log('Redirecionando para index.html...');
+            window.location.href = '../index.html';
+        }
+
+        function downloadPDF(filename) {
+            // Links dos PDFs do Google Drive
+            const pdfs = {
+                'portugues': 'https://drive.google.com/file/d/14VmG-bORWhshjjaq0YMQD6XwjMeWWjoI/view?usp=sharing',
+                'ingles': 'https://drive.google.com/file/d/1Ji6TaK1BgvfDb6XxIUQdYfpuq9nWbvOf/view?usp=sharing'
+            };
+            
+            if (pdfs[filename]) {
+                // Abrir o PDF em uma nova aba
+                window.open(pdfs[filename], '_blank');
+                
+                // Efeito visual de confirmação
+                const item = event.currentTarget;
+                item.style.background = 'rgba(59, 130, 246, 0.2)';
+                item.style.borderColor = '#3b82f6';
+                
+                setTimeout(() => {
+                    item.style.background = '';
+                    item.style.borderColor = '';
+                }, 1000);
+            } else {
+                alert(`📥 PDF não encontrado: ${filename}`);
+            }
+        }
+
+        // Função para enviar email
+        function enviarEmail() {
+            const email = 'teris.ofc777@gmail.com';
+            const subject = 'Contato - Templo Teris';
+            const body = 'Olá Teris! Gostaria de entrar em contato...';
+            
+            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink, '_blank');
+        }
+
+        // Função para visitar YouTube
+        function visitarYouTube() {
+            const youtubeChannel = 'https://www.youtube.com/@Teris_ofc_777';
+            window.open(youtubeChannel, '_blank');
+        }
+
+        // Event listener simplificado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remover event listeners duplicados
+            const backBtn = document.querySelector('.back-btn');
+            if (backBtn) {
+                // Remover event listeners existentes
+                backBtn.replaceWith(backBtn.cloneNode(true));
+                
+                // Adicionar novo event listener
+                document.querySelector('.back-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    voltarAoInicio();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
