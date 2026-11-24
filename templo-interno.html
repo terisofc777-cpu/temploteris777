@@ -636,15 +636,15 @@
         <!-- Seção de boas-vindas -->
         <div class="welcome-section">
             <h2>🏛️ Interior Sagrado</h2>
-            <p>Explore os mistérios do templo e descubra os segredos dos subliminares sagrados. Aqui você encontrará manuais ancestrais, informações sobre encomendas personalizadas e canais de comunicação direta. Para pedidos gratuitos, faça em um post que tem no canal. Às vezes podem estar fechados ou abertos e posso demorar a publicar. Lembrete: eles podem ser postados em modo não listado ou públicos.</p>
+            <p>Você está no interior do templo. Daqui é possível consultar os arquivos e seguir com uma encomenda personalizada.</p>
             
             <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.1)); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 20px; padding: 25px; margin-top: 30px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);">
                 <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ef4444, #f87171, #ef4444);"></div>
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap;">
                     <div style="font-size: 1.5em; color: #ef4444; filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));">⚠️</div>
-                    <h4 style="color: #ef4444; font-family: 'Orbitron', monospace; font-size: 1.2em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0; text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);">Aviso de Segurança</h4>
+                    <h4 style="color: #ef4444; font-family: 'Orbitron', monospace; font-size: 1.2em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0; text-shadow: 0 0 10px rgba(239, 68, 68, 0.3); flex: 1; min-width: 0;">Aviso sobre os arquivos e conteúdos</h4>
                 </div>
-                <p style="color: #cbd5e1; font-size: 1.1em; line-height: 1.7; margin: 0; font-weight: 500; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Estou adicionando cada subliminal caso o YouTube seja banido novamente. Esta medida é pela <strong>segurança de todos</strong> e dos subliminares.</p>
+                <p style="color: #cbd5e1; font-size: 1.1em; line-height: 1.7; margin: 0; font-weight: 500; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);">Este espaço reúne materiais, documentos e conteúdos disponibilizados pelo Teris. Os arquivos estão organizados em uma pasta externa do Google Drive, incluindo materiais em português e inglês. A pasta poderá receber atualizações conforme novos conteúdos forem disponibilizados. Utilize o botão oficial desta página para acessar os arquivos.</p>
             </div>
         </div>
 
@@ -653,18 +653,13 @@
             <!-- Seção de Manuais -->
             <div class="section-card">
                 <h3>📚 Manuais Disponíveis</h3>
-                <p>Acesso exclusivo aos grimórios sagrados contendo técnicas avançadas de subliminares e afirmações poderosas. <strong>Esta é a versão definitiva e completa do canal Teris</strong>, incluindo metodologias sobre sincronização temporal, subliminares avançados, técnicas especializadas e muito mais. Como esta é a versão final que não será mais atualizada, recomendamos aproveitar ao máximo este conteúdo único. <strong>Lembre-se: a evolução é contínua e existem diversas outras metodologias disponíveis para complementar seu desenvolvimento pessoal.</strong></p>
+                <p>Todos os materiais estão reunidos em uma pasta do Google Drive.</p>
                 
-                <div class="pdf-item" onclick="downloadPDF('portugues')">
-                    <div class="pdf-icon">📄</div>
-                    <span>Manual em Português</span>
-                    <button class="download-btn">BAIXAR</button>
-                </div>
-                
-                <div class="pdf-item" onclick="downloadPDF('ingles')">
-                    <div class="pdf-icon">📄</div>
-                    <span>Manual em Inglês</span>
-                    <button class="download-btn">BAIXAR</button>
+                <!-- data-url: colar o link direto da pasta compartilhada do Google Drive -->
+                <div class="pdf-item" data-url="" onclick="abrirDestino(this)">
+                    <div class="pdf-icon">📁</div>
+                    <span>Pasta de arquivos</span>
+                    <button class="download-btn" type="button">VISITA SITE</button>
                 </div>
                 
                 <div class="feedback-info">
@@ -676,91 +671,128 @@
             <!-- Seção de Encomendas -->
             <div class="section-card">
                 <h3>📦 Informações de Encomendas</h3>
-                <p><strong>Subliminares Teris</strong> - Você pode solicitar um subliminar personalizado com boosters energéticos, proteção e, se desejar, magia embutida.</p>
-                
-                <div class="order-info">
-                    <h4>🔹 Pacote Básico – R$20</h4>
-                    <p>Até 100 afirmações<br>
-                    Booster energético forte (com ou sem magia, você decide)<br>
-                    Proteção vibracional forte<br>
-                    Edição básica<br>
-                    Música à sua escolha ou deixe comigo</p>
+
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1)); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 20px; padding: 25px; margin: 0 0 20px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #10b981, #34d399, #10b981);"></div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 1.5em; color: #10b981; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));">🟢</div>
+                        <h4 style="color: #10b981; font-family: 'Orbitron', monospace; font-size: 1.2em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin: 0; text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);">⟁ Encomendas Abertas</h4>
+                    </div>
                 </div>
-                
+
                 <div class="order-info">
-                    <h4>🔸 Pacote Intermediário – R$30</h4>
-                    <p>Até 200 afirmações<br>
-                    Booster energético forte (com ou sem magia, você decide)<br>
-                    Proteção energética forte<br>
-                    Frequência vibracional opcional (ex: 432Hz, 528Hz)<br>
-                    Edição mais equilibrada<br>
-                    Música personalizada conforme o tema</p>
+                    <h4>Teris Sub ⁷⁷⁷</h4>
+                    <p style="color: #60a5fa; font-style: italic; margin-bottom: 0;">" Nós somos o que permitimos ser, então permita-se ser sempre algo a mais. "</p>
                 </div>
-                
+
                 <div class="order-info">
-                    <h4>🔮 Pacote Mágico – R$77</h4>
-                    <p>Até 300 afirmações<br>
-                    Booster mágico com magia<br>
-                    Proteção com selamento mágico<br>
-                    Frequência oculta espiritual<br>
-                    Criado em estado de transe<br>
-                    Edição completa com camadas mágicas<br>
-                    Música à sua escolha ou canalizada</p>
+                    <h4>About</h4>
+                    <p>Seja bem vindo/a! Sou Teris, criador de subliminais desde 2024. Desde então, venho evoluindo e melhorando minhas produções, descrições e afirmações, buscando desenvolver cada encomenda de acordo com os objetivos e desejos de cada Invocado.</p>
+                    <p>Além das produções do canal, também faço encomendas personalizadas e, às vezes, desenvolvo sugestões e projetos próprios.</p>
                 </div>
-                
+
                 <div class="order-info">
-                    <h4>📤 Processo de Pedido:</h4>
-                    <p>Após selecionar o pacote desejado, acesse a seção <strong>"Meus Contatos"</strong> e entre em contato através do email. Inclua as seguintes informações em sua mensagem:</p>
-                    <ul style="margin: 15px 0; padding-left: 20px; color: #cbd5e1;">
-                        <li style="margin-bottom: 8px;">Objetivo principal que deseja manifestar ou transformar</li>
-                        <li style="margin-bottom: 8px;">Preferência musical (ou autorização para seleção personalizada)</li>
-                        <li style="margin-bottom: 8px;">Nome desejado para o título do arquivo (opcional)</li>
+                    <h4>Ⅰ — Simples</h4>
+                    <p style="color: #60a5fa; font-weight: 600; font-family: 'Orbitron', monospace; letter-spacing: 1px;">R$10–20</p>
+                    <p style="margin-bottom: 0;">Encomendas menores e objetivas, incluindo booster acelerador, campo mórfico e afirmações personalizadas. Podem abranger poderes, aparência, habilidades e características.</p>
+                </div>
+
+                <div class="order-info">
+                    <h4>Ⅱ — Intermediário</h4>
+                    <p style="color: #60a5fa; font-weight: 600; font-family: 'Orbitron', monospace; letter-spacing: 1px;">R$40</p>
+                    <p style="margin-bottom: 0;">Encomendas mais elaboradas, incluindo campo mórfico, booster acelerado, booster mágico, afirmações desenvolvidas e outros elementos conforme a solicitação.</p>
+                </div>
+
+                <div class="order-info">
+                    <h4>Ⅲ — Complexo</h4>
+                    <p style="color: #60a5fa; font-weight: 600; font-family: 'Orbitron', monospace; letter-spacing: 1px;">R$70</p>
+                    <p style="margin-bottom: 0;">Projetos maiores e personalizados, que podem reunir diversos benefícios, características e elementos de acordo com o objetivo do Invocado.</p>
+                </div>
+
+                <div class="order-info">
+                    <h4>Ⅳ — Extremamente Trabalhoso</h4>
+                    <p style="color: #60a5fa; font-weight: 600; font-family: 'Orbitron', monospace; letter-spacing: 1px;">Valor a combinar</p>
+                    <p style="margin-bottom: 0;">Projetos muito extensos, combinações e encomendas que exigem maior volume de trabalho. O preço será definido conforme a complexidade e o tempo de produção.</p>
+                </div>
+            </div>
+
+            <!-- Opções da encomenda -->
+            <div class="section-card">
+                <h3>⟁ Opções da Encomenda</h3>
+                <div class="order-info">
+                    <ul style="margin: 0; padding-left: 20px; color: #cbd5e1;">
+                        <li style="margin-bottom: 8px;">Versão com música escolhida pelo Invocado.</li>
+                        <li style="margin-bottom: 8px;">Versão calma com chuva, vento, mar, ruído, lo-fi ou outras ambientações.</li>
+                        <li style="margin-bottom: 8px;">Formatos MP4, quando possível, MP3 e WAV.</li>
+                        <li style="margin-bottom: 8px;">Entrega pelo Google Drive, YouTube privado ou público.</li>
                     </ul>
-                    <p style="margin-top: 15px;">O pagamento pode ser realizado antes ou após a entrega, conforme sua preferência. Após a finalização, você receberá acesso completo ao áudio e às afirmações personalizadas.</p>
-                    <p style="margin-top: 15px; color: #60a5fa; font-weight: 600; font-style: italic;">Mais informações serão enviadas automaticamente pelo meu email assim que você responder as perguntas necessárias. Gratidão!</p>
+                    <p style="margin-top: 15px; margin-bottom: 0;">O Invocado poderá escolher a ambientação ou deixar a escolha para o Teris.</p>
                 </div>
-                
+            </div>
+
+            <!-- Elementos personalizados -->
+            <div class="section-card">
+                <h3>⟁ Elementos Personalizados</h3>
                 <div class="order-info">
-                    <h4>⏱ Prazo de entrega:</h4>
-                    <p>Até 2 a 4 dias úteis (em caso de muitos pedidos) após o pagamento. Se já estiver pronto, envio no mesmo dia.</p>
+                    <ul style="margin: 0; padding-left: 20px; color: #cbd5e1;">
+                        <li style="margin-bottom: 8px;">Boosters.</li>
+                        <li style="margin-bottom: 8px;">Campo mórfico.</li>
+                        <li style="margin-bottom: 8px;">Elementos mágicos.</li>
+                        <li style="margin-bottom: 8px;">Mantras.</li>
+                        <li style="margin-bottom: 8px;">Frequências.</li>
+                        <li style="margin-bottom: 8px;">Afirmações personalizadas.</li>
+                        <li style="margin-bottom: 8px;">Outros recursos conforme a encomenda.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Como funciona -->
+            <div class="section-card">
+                <h3>⟁ Como Funciona</h3>
+                <div class="order-info">
+                    <ol style="margin: 0; padding-left: 20px; color: #cbd5e1;">
+                        <li style="margin-bottom: 8px;">O Invocado entra em contato e apresenta os detalhes da encomenda.</li>
+                        <li style="margin-bottom: 8px;">O pedido é analisado para verificar sua extensão e complexidade.</li>
+                        <li style="margin-bottom: 8px;">O valor é informado antes do início da produção.</li>
+                        <li style="margin-bottom: 8px;">Após a confirmação, a produção é iniciada.</li>
+                        <li style="margin-bottom: 8px;">O áudio é entregue conforme as opções previamente combinadas.</li>
+                    </ol>
+                    <p style="margin-top: 15px; margin-bottom: 0; color: #60a5fa; font-weight: 600;">O preço depende da extensão, complexidade, quantidade de elementos e tempo de produção. Encomendas extensas terão orçamento definido previamente. Não solicite pagamento antes da avaliação.</p>
                 </div>
             </div>
 
             <!-- Seção de Contatos -->
             <div class="section-card">
-                <h3>📞 Meus Contatos</h3>
-                <p>Entre em contato comigo através dos canais abaixo:</p>
-                
+                <h3>⟁ Realize sua Invocação</h3>
+
                 <div class="contact-info">
                     <div class="contact-detail">
-                        <div class="icon">📧</div>
+                        <div class="icon">📸</div>
                         <div class="info">
-                            <div class="label">Email</div>
-                            <div class="value">teris.ofc777@gmail.com</div>
+                            <div class="label">Instagram</div>
+                            <div class="value">Perfil oficial</div>
                         </div>
-                        <button class="contact-btn" onclick="enviarEmail()">ENVIAR EMAIL</button>
+                        <!-- data-url: colar a URL oficial do Instagram -->
+                        <button class="contact-btn" type="button" data-url="" onclick="abrirDestino(this)">VISITAR PERFIL</button>
                     </div>
-                    
-                    <div class="contact-detail">
-                        <div class="icon">💬</div>
-                        <div class="info">
-                            <div class="label">Amino</div>
-                            <div class="value">Teris_777</div>
-                        </div>
-                    </div>
-                    
+
                     <div class="contact-detail">
                         <div class="icon">🎬</div>
                         <div class="info">
                             <div class="label">YouTube</div>
-                            <div class="value">Teris_ofc_777</div>
+                            <div class="value">@teris_sub777</div>
                         </div>
-                        <button class="contact-btn" onclick="visitarYouTube()">VISITAR CANAL</button>
+                        <button class="contact-btn" type="button" data-url="https://youtube.com/@teris_sub777?si=iQReYTf3iTSm5JJL" onclick="abrirDestino(this)">VISITAR CANAL</button>
                     </div>
-                </div>
-                
-                <div class="contact-message">
-                    <p>Me contate a qualquer momento através dos contatos disponíveis. Responderei o mais breve possível para auxiliar com seus pedidos e esclarecer dúvidas.</p>
+
+                    <div class="contact-detail">
+                        <div class="icon">📧</div>
+                        <div class="info">
+                            <div class="label">E-mail</div>
+                            <div class="value">teris.ofc777@gmail.com</div>
+                        </div>
+                        <button class="contact-btn" type="button" onclick="enviarEmail()">ENVIAR EMAIL</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -786,45 +818,16 @@
             }, 800);
         }
 
-        function downloadPDF(filename) {
-            // Links dos PDFs do Google Drive
-            const pdfs = {
-                'portugues': 'https://drive.google.com/file/d/14VmG-bORWhshjjaq0YMQD6XwjMeWWjoI/view?usp=sharing',
-                'ingles': 'https://drive.google.com/file/d/1Ji6TaK1BgvfDb6XxIUQdYfpuq9nWbvOf/view?usp=sharing'
-            };
-            
-            if (pdfs[filename]) {
-                // Abrir o PDF em uma nova aba
-                window.open(pdfs[filename], '_blank');
-                
-                // Efeito visual de confirmação
-                const item = event.currentTarget;
-                item.style.background = 'rgba(59, 130, 246, 0.2)';
-                item.style.borderColor = '#3b82f6';
-                
-                setTimeout(() => {
-                    item.style.background = '';
-                    item.style.borderColor = '';
-                }, 1000);
-            } else {
-                alert(`📥 PDF não encontrado: ${filename}`);
+        function abrirDestino(el) {
+            const url = el && el.getAttribute('data-url');
+            if (!url) {
+                return;
             }
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
 
-        // Função para enviar email
         function enviarEmail() {
-            const email = 'teris.ofc777@gmail.com';
-            const subject = 'Contato - Templo Teris';
-            const body = 'Olá Teris! Gostaria de entrar em contato...';
-            
-            const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.open(mailtoLink, '_blank');
-        }
-
-        // Função para visitar YouTube
-        function visitarYouTube() {
-            const youtubeChannel = 'https://www.youtube.com/@Teris_ofc_777';
-            window.open(youtubeChannel, '_blank');
+            window.location.href = 'mailto:teris.ofc777@gmail.com';
         }
 
         // Adicionar efeitos de hover dinâmicos
